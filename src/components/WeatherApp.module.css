@@ -31,14 +31,14 @@
     color: #555;
   }
   
-  .weather-cards {
+  .weatherCards { /* Fixed class name */
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-top: 20px;
   }
   
-  .weather-card {
+  .weatherCard { /* Fixed class name */
     background: #f8f9fa;
     padding: 15px;
     border-radius: 10px;

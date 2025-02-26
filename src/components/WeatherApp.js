@@ -7,16 +7,16 @@ const WeatherApp = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchWeather = async () => {
-    if (!city) return;
+    if (!city.trim()) return; 
 
     setLoading(true);
     setWeather(null);
 
     try {
       const response = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=18fd3167c707432cb8c40013252602&q=${city}`
+        `https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=${city}`
       );
-      
+
       if (!response.ok) {
         throw new Error("Invalid city");
       }
@@ -24,7 +24,9 @@ const WeatherApp = () => {
       const data = await response.json();
       setWeather(data);
     } catch (error) {
-      alert("Failed to fetch weather data");
+      setTimeout(() => {
+        alert("Failed to fetch weather data"); 
+      }, 100);
     }
 
     setLoading(false);
@@ -44,23 +46,23 @@ const WeatherApp = () => {
         Search
       </button>
 
-      {loading && <p className={styles.loading}>Loading data…</p>}
+      {loading && <p className={styles.loading}>Loading data...</p>}
 
       {weather && (
-        <div className={styles["weather-cards"]}>
-          <div className={styles["weather-card"]}>
+        <div className={styles.weatherCards}> {/* Updated class name */}
+          <div className={styles.weatherCard}>
             <h3>Temperature</h3>
             <p>{weather.current.temp_c}°C</p>
           </div>
-          <div className={styles["weather-card"]}>
+          <div className={styles.weatherCard}>
             <h3>Humidity</h3>
             <p>{weather.current.humidity}%</p>
           </div>
-          <div className={styles["weather-card"]}>
+          <div className={styles.weatherCard}>
             <h3>Condition</h3>
             <p>{weather.current.condition.text}</p>
           </div>
-          <div className={styles["weather-card"]}>
+          <div className={styles.weatherCard}>
             <h3>Wind Speed</h3>
             <p>{weather.current.wind_kph} kph</p>
           </div>
