@@ -1,0 +1,21 @@
+.weather-app {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .search-bar {
+    margin-bottom: 10px;
+  }
+  
+  .weather-cards {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .weather-card {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
