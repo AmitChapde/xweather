@@ -1,38 +1,44 @@
 import { useState } from "react";
-import "./WeatherApp.css"; 
+import "./WeatherApp.css";
 
 const WeatherApp = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const API_KEY = "18fd3167c707432cb8c40013252602"; 
+  const API_KEY = "18fd3167c707432cb8c40013252602";
 
   const fetchWeather = async () => {
     if (!city) return;
 
     setLoading(true);
+    setWeather(null);
+
     try {
       const response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch");
+        throw new Error("Invalid city name");
       }
 
       const data = await response.json();
-      setWeather(data);
+
+    
+      setTimeout(() => {
+        setWeather(data);
+        setLoading(false);
+      }, 500); 
     } catch (error) {
-      alert("Failed to fetch weather data");
-    } finally {
       setLoading(false);
+      alert("Failed to fetch weather data");
     }
   };
 
   return (
     <div className="weather-app">
-        <h1>Weather App</h1>
+      <h1>Weather App</h1>
       <div className="search-bar">
         <input
           type="text"
@@ -43,7 +49,7 @@ const WeatherApp = () => {
         <button onClick={fetchWeather}>Search</button>
       </div>
 
-      {loading && <p>Loading data…</p>}
+      {loading && <p>Loading data...</p>}
 
       {weather && (
         <div className="weather-cards">
