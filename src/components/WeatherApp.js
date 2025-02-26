@@ -14,7 +14,7 @@ const WeatherApp = () => {
 
     try {
       const response = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=${city}`
+        `https://api.weatherapi.com/v1/current.json?key=18fd3167c707432cb8c40013252602&q=${city}`
       );
 
       if (!response.ok) {
